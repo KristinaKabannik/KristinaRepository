@@ -15,5 +15,4 @@ def test_log_event(username, status, expected_log, caplog):
         log_event(username, status)
 
 
-        # Перевіряємо, чи правильно було зафіксовано рівень логування
-        assert len(caplog.records) > 0, "Логи додались в 'login_system.log'"
+        assert len(caplog.records) > 0, "Логи додались в 'login_system.log'"  # Перевіряємо, чи додались логи
