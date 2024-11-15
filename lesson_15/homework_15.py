@@ -19,6 +19,12 @@ class Rhombus:
 
             super().__setattr__("angle_b", 180 - value)  # Знаходимо кут b
 
+        elif name == "angle_b":
+            if value <= 0 or value >= 180:
+                raise ValueError("Кут повинен бути не менше 0 і не більше 180 градусів")
+            super().__setattr__(name, value)
+
+            super().__setattr__("angle_a", 180 - value)     # Знаходимо кут а
         else:
             super().__setattr__(name, value)
 
@@ -27,4 +33,6 @@ class Rhombus:
 
 
 rhombus = Rhombus(15, 75)    # екземпляр класу
-print(rhombus.rhombus_info())
+print(rhombus.rhombus_info())   # виводимо результат з заданим кутом а
+rhombus.angle_b = 50
+print(rhombus.rhombus_info())    # виводимо результат після зміни кута b
