@@ -9,3 +9,6 @@ def get_students_by_course(course_id): # Отримуємо список сту�
             print(f"{student.first_name} {student.last_name} - {student.email}")
     else:
         print("Курс не знайдено.")
+
+
+get_students_by_course(2)

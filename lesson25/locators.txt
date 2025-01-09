@@ -1,0 +1,54 @@
+CSS локатори:
+input[name='email'] - поле для вводу email.
+input[name='password'] - поле для вводу паролю.
+input[name='remember'] - чекбокс Remember me
+input[type='checkbox'][name='remember_me'] - чекбокс Remember me
+button:contains('Login') - кнопка входу з текстом "Login" (з текстом через :contains() в деяких браузерах).
+button:contains('Registration') - кнопка входу з текстом "Registration"
+h4:contains('Log in') - Назва вікна H4, що містить текст "Log in".
+button[type='button'].close - кнопка закриття вікна з класом сlose.
+button:contains('Guest log in') - кнопка входу з текстом "Guest log in" 
+h1:contains('Garage') - заголовок H1, що містить текст "Garage".
+button:contains('Add car') - кнопка з текстом "Add car"
+button.btn.btn-primary - кнопка з класами btn і btn-primary ("Add car")
+button#userNavDropdown.dropdown-toggle.user-nav_toggle - кнопка My profile з id userNavDropdown і класами dropdown-toggle i user-nav_toggle
+p.h3.panel-empty_message - параграф з класами h3 і panel-empty_message
+h4:contains('Registration') - Назва вікна H4, що містить текст "Registration".
+label:contains('Name') - назва поля "Name"
+input#signupName.form-control.ng-untouched.ng-pristine.ng-invalid - поле для вводу "Name" p id signupName і класами form-control, ng-untouched, ng-pristine, ng-invalid
+button.ytp-large-play-button.ytp-button.ytp-large-play-button-red-bg - кнопка play з класами
+img.about-picture_img - картинка з класом about-picture_img
+div.modal-header - хеадер модального вікна з класом modal-header
+div.modal-footer.d-flex.justify-content-end - футер модального вікна з класами modal-footer, d-flex, justify-content-end
+nav.user-nav_menu.dropdown-menu.show - меню навігації з класами user-nav_menu, dropdown-menu, show
+a.dropdown-item.btn.btn-link.user-nav_link - пункт меню навігації з класами dropdown-item, btn, btn-link, user-nav_link
+footer a[href='/contact'] - посилання на сторінку "Contact" у футері.
+h2:contains('Сontacts') - заголовок у футері h4, що містить текст "Сontacts".
+
+
+XPath локатори:
+//input[@name='email'] - поле для вводу email.
+//input[@name='password'] - поле для вводу паролю.
+//input[@name='remember'] - чекбокс "Remember me".
+//input[@type='checkbox'] - чекбокс "Remember me".
+//button[text()='Login'] - кнопка входу з текстом "Login".
+//button[text()='Registration'] - кнопка входу з текстом "Registration".
+//h4[text()='Log in'] - заголовок H4 з текстом "Log in".
+//button[@type='button' and contains(@class, 'close')] - кнопка закриття вікна.
+//button[text()='Guest log in'] - кнопка входу з текстом "Guest log in".
+//h1[text()='Garage'] - заголовок H1 з текстом "Garage".
+//button[text()='Add car'] - кнопка з текстом "Add car".
+//button[contains(@class, 'btn') and contains(@class, 'btn-primary')] - кнопка з класами btn і btn-primary.
+//button[@id='userNavDropdown' and contains(@class, 'dropdown-toggle') and contains(@class, 'user-nav_toggle')] - кнопка профілю.
+//p[contains(@class, 'h3') and contains(@class, 'panel-empty_message')] - параграф з класами h3 і panel-empty_message.
+//h4[text()='Registration'] - заголовок H4 з текстом "Registration".
+//label[text()='Name'] - мітка поля "Name".
+//input[@id='signupName' and contains(@class, 'form-control') and contains(@class, 'ng-untouched') and contains(@class, 'ng-pristine') and contains(@class, 'ng-invalid')] - поле для вводу "Name".
+//button[contains(@class, 'ytp-large-play-button') and contains(@class, 'ytp-button') and contains(@class, 'ytp-large-play-button-red-bg')] - кнопка "Play".
+//img[contains(@class, 'about-picture_img')] - зображення з класом about-picture_img.
+//div[contains(@class, 'modal-header')] - хеадер модального вікна.
+//div[contains(@class, 'modal-footer') and contains(@class, 'd-flex') and contains(@class, 'justify-content-end')] - футер модального вікна.
+//nav[contains(@class, 'user-nav_menu') and contains(@class, 'dropdown-menu') and contains(@class, 'show')] - меню навігації.
+//a[contains(@class, 'dropdown-item') and contains(@class, 'btn') and contains(@class, 'btn-link') and contains(@class, 'user-nav_link')] - пункт меню навігації.
+//footer//a[@href='/contact'] - посилання на сторінку "Contact" у футері.
+//h2[text()='Сontacts'] - заголовок H2 з текстом "Сontacts".
