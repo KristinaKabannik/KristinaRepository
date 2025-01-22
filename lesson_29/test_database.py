@@ -1,31 +1,90 @@
-import pytest
-from registration import insert_registration_result, update_registration_status, fetch_all_results, \
-    delete_registration_result
+import psycopg2
 
 
-def test_insert_registration():
-    inserted_id = insert_registration_result("Alex", "Alex", "alex.alex@test.test", "Success")
-    assert inserted_id is not None
+def test_db_connect():
+    conn = psycopg2.connect(
+        dbname="kris_db",
+        user="kris",
+        password="kris",
+        host="db",
+        port="5432"
+    )
+    assert conn is not None
+
+def test_data_insert():
+    conn = psycopg2.connect(
+        dbname="kris_db",
+        user="kris",
+        password="kris",
+        host="db",
+        port="5432"
+    )
+    cursor = conn.cursor()
+    cursor.execute("""
+    CREATE TABLE registration
+    (
+        id INT primary key,
+        name VARCHAR
+    )
+    """)
+    conn.commit()
+    cursor.execute("INSERT INTO registration (id, name) VALUES (1, 'Alex')")
+    conn.commit()
+    cursor.execute("SELECT * FROM registration WHERE id=1")
+    result = cursor.fetchone()
+    assert result[1] == 'Alex'
+
+def test_data_update():
+    conn = psycopg2.connect(
+        dbname="kris_db",
+        user="kris",
+        password="kris",
+        host="db",
+        port="5432"
+    )
+    cursor = conn.cursor()
+    cursor.execute("""
+    UPDATE registration
+        SET name = 'Kate' 
+        WHERE id = 1
+    """)
+    conn.commit()
+    cursor.execute("SELECT * FROM registration WHERE id=1")
+    conn.commit()
+    result = cursor.fetchone()
+    assert result[1] == 'Kate'
+
+def test_data_select():
+    conn = psycopg2.connect(
+        dbname="kris_db",
+        user="kris",
+        password="kris",
+        host="db",
+        port="5432"
+    )
+    cursor = conn.cursor()
+    conn.commit()
+    cursor.execute("SELECT name FROM registration WHERE id=1")
+    result = cursor.fetchone()
+    assert result[0] == 'Kate'
 
 
-def test_update_registration_status():
-    inserted_id = insert_registration_result("John", "John", "john.john@test.test", "Pending")
-    update_registration_status(inserted_id, "Confirmed")
-
-    results = fetch_all_results()
-    for row in results:
-        if row[0] == inserted_id:
-            assert row[4] == "Confirmed"
-
-
-def test_fetch_results():
-    results = fetch_all_results()
-    assert len(results) > 0
-
-
-def test_delete_registration():
-    inserted_id = insert_registration_result("Delete", "Me", "deleteme@example.com", "Pending")
-    delete_registration_result(inserted_id)
-
-    results = fetch_all_results()
-    assert all(row[0] != inserted_id for row in results)
+def test_data_delete():
+    conn = psycopg2.connect(
+        dbname="kris_db",
+        user="kris",
+        password="kris",
+        host="db",
+        port="5432"
+    )
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM registration WHERE id=1")
+    conn.commit()
+    cursor.execute("SELECT name FROM registration WHERE id=1")
+    conn.commit()
+    result = cursor.fetchone()
+    cursor.execute("""
+                         DROP TABLE users
+                         """)
+    conn.commit()
+    assert result is None

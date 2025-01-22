@@ -1,8 +1,8 @@
 # Базовий образ Python
-FROM python:3.9-slim
+FROM python:3.13
 
 # Встановлюємо залежності
-RUN pip install psycopg2 pytest selenium webdriver-manager
+RUN pip install pytest psycopg2-binary
 
 # Додаємо код додатку
 COPY . /app
@@ -11,4 +11,4 @@ COPY . /app
 WORKDIR /app
 
 # Вказуємо команду для запуску тестів
-CMD ["test_database.py"]
+CMD ["pytest" "test_database"]
