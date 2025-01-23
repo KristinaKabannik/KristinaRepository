@@ -1,0 +1,40 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://kris:kris@db:5432/kris_db
+    networks:
+      - test_network
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: kris
+      POSTGRES_PASSWORD: kris
+      POSTGRES_DB: kris_db
+    ports:
+      - "5432:5432"
+    networks:
+      - test_network
+
+  allure:
+    image: frankescobar/allure-docker-service
+    ports:
+      - "5050:5050"
+    volumes:
+      - allure-results:/app/allure-results
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 3
+    networks:
+      - test_network
+
+networks:
+  test_network:
+    driver: bridge
+
+volumes:
+  allure-results:
