@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://kris:kris@db:5432/kris_db
+    networks:
+      - test_network
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: kris
+      POSTGRES_PASSWORD: kris
+      POSTGRES_DB: kris_db
+    ports:
+      - "5432:5432"
+    networks:
+      - test_network
+
+networks:
+  test_network:
+    driver: bridge
